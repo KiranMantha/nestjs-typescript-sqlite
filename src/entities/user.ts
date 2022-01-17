@@ -26,12 +26,7 @@ export class User {
   @Column()
   phone: number;
 
-  @ManyToOne(() => Profile, (profile) => profile.users, {
-    cascade: true
-  })
-  @JoinColumn({
-    name: 'profile_id'
-  })
+  @ManyToOne(() => Profile)
   profile: Profile;
 
   @CreateDateColumn()
