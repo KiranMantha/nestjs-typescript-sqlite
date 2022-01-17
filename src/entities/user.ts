@@ -30,7 +30,7 @@ export class User {
     cascade: true
   })
   @JoinColumn({
-    name: 'id'
+    name: 'profile_id'
   })
   profile: Profile;
 
