@@ -15,8 +15,6 @@ export class ProfilesService {
   }
 
   async create(profile: Profile): Promise<Profile> {
-    const _profile = new Profile();
-    _profile.name = profile.name;
-    return await this.profilesRepository.save(_profile);
+    return await this.profilesRepository.save(profile);
   }
 }

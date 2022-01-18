@@ -3,7 +3,6 @@ import { User } from '@entities/user';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ProfilesService } from './profile.service';
 
 @Injectable()
 export class UsersService {
@@ -23,8 +22,15 @@ export class UsersService {
     const profile = await this.profilesRepository.findOne(profileId);
     const user = this.usersRepository.create({
       ...record,
-      profile,
+      profile
     });
     return await this.usersRepository.save(user);
+  }
+
+  async update(record: User): Promise<User> {
+    const profileId = (record as any).profile_id;
+    const profile = await this.profilesRepository.findOne(profileId);
+    record.profile = profile;
+    return await this.usersRepository.save(record);
   }
 }
