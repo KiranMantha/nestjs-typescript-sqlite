@@ -13,34 +13,39 @@ import { QuestionsService } from './questions.service';
 
 @Controller('questions')
 export class QuestionsController {
-  constructor(private questionnaireService: QuestionsService) {}
+  constructor(private service: QuestionsService) {}
 
   @Get()
   async index(): Promise<Question[]> {
-    return await this.questionnaireService.findAll();
+    return await this.service.findAll();
   }
 
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number): Promise<Question> {
-    return await this.questionnaireService.find(id);
+    return await this.service.find(id);
   }
 
   @Post()
-  async create(@Body() question: Question): Promise<Question> {
-    return await this.questionnaireService.create(question);
+  async create(
+    @Body() question: Question
+  ): Promise<{ message: string; id: number }> {
+    const item = await this.service.createOrUpdate(question);
+    return { message: 'Question created successfully', id: item.id };
   }
 
-  @Put(':id')
+  @Put()
   async update(
-    @Param('id', ParseIntPipe) id: number,
     @Body() question: Question
-  ): Promise<any> {
-    question.id = id;
-    return await this.questionnaireService.update(question);
+  ): Promise<{ message: string; id: number }> {
+    const item = await this.service.createOrUpdate(question);
+    return { message: 'Question created successfully', id: item.id };
   }
 
   @Delete(':id')
-  async delete(@Param('id', ParseIntPipe) id: number): Promise<any> {
-    return await this.questionnaireService.delete(id);
+  async delete(
+    @Param('id', ParseIntPipe) id: number
+  ): Promise<{ message: string; id: number }> {
+    await this.service.delete(id);
+    return { message: 'Question created successfully', id };
   }
 }

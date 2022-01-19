@@ -1,24 +1,33 @@
 import {
+  BaseEntity,
   Entity,
   Column,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  CreateDateColumn
+  CreateDateColumn,
+  ManyToOne
 } from 'typeorm';
-
-export interface Category {
-  id: number;
-  title: string;
-  questions;
-}
+import { Category } from './category';
 
 @Entity('question')
-export class Question {
+export class Question extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  description: string;
+  title: string;
+
+  @Column()
+  questionType: string;
+
+  @Column()
+  reviewGate: string;
+
+  @Column()
+  sortId: number;
+
+  @ManyToOne(() => Category, (category) => category.questions)
+  category: Category;
 
   @CreateDateColumn()
   createdDate: Date;

@@ -6,7 +6,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseConnectionService } from './database-connection.service';
 import { QuestionsModule } from './modules/questions/questions.module';
-import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -18,8 +17,7 @@ import { UsersModule } from './modules/users/users.module';
       imports: [ConfigModule],
       useClass: DatabaseConnectionService
     }),
-    //QuestionsModule,
-    UsersModule
+    QuestionsModule
   ],
   controllers: [AppController],
   providers: [AppService]
