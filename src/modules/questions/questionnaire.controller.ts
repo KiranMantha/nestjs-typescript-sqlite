@@ -6,8 +6,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
-  Post,
-  Put
+  Post
 } from '@nestjs/common';
 import { QuestionnaireService } from './questionnaire.service';
 
@@ -31,14 +30,6 @@ export class QuestionnaireController {
   ): Promise<{ message: string; id: number }> {
     const item = await this.service.create(record);
     return { message: 'Questionnaire created successfully', id: item.id };
-  }
-
-  @Put()
-  async update(
-    @Body() record: Questionnaire
-  ): Promise<{ message: string; id: number }> {
-    await this.service.update(record);
-    return { message: 'Questionnaire updated successfully', id: record.id };
   }
 
   @Delete(':id')

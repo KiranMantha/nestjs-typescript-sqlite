@@ -4,8 +4,7 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn
+  PrimaryGeneratedColumn
 } from 'typeorm';
 import { Category } from './category';
 
@@ -22,7 +21,4 @@ export class Questionnaire extends BaseEntity {
 
   @CreateDateColumn()
   createdDate: string;
-
-  @UpdateDateColumn()
-  lastModifiedDate: string;
 }

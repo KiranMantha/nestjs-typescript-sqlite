@@ -28,10 +28,7 @@ export class CategoryService {
     return await this.categoryRepo.save(category);
   }
 
-  async update(record: Category) {
-    const questionnaireId = (record as any).questionnaireId;
-    const questionnaire = await this.questionnaireRepo.findOne(questionnaireId);
-    record.questionnaire = questionnaire;
-    return await this.categoryRepo.save(record);
+  async delete(id: number) {
+    return await this.categoryRepo.delete(id);
   }
 }

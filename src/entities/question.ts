@@ -3,7 +3,6 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
   CreateDateColumn,
   ManyToOne
 } from 'typeorm';
@@ -18,7 +17,19 @@ export class Question extends BaseEntity {
   title: string;
 
   @Column()
+  question: string;
+
+  @Column()
   questionType: string;
+
+  @Column()
+  definition: string;
+
+  @Column()
+  recommendation: string;
+
+  @Column()
+  priority: string;
 
   @Column()
   reviewGate: string;
@@ -26,12 +37,17 @@ export class Question extends BaseEntity {
   @Column()
   sortId: number;
 
+  @Column()
+  categoryId: number;
+
+  @Column({
+    default: '[]'
+  })
+  options: string;
+
   @ManyToOne(() => Category, (category) => category.questions)
   category: Category;
 
   @CreateDateColumn()
   createdDate: Date;
-
-  @UpdateDateColumn()
-  lastUpdatedDate: Date;
 }

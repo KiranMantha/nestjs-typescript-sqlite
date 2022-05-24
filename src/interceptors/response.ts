@@ -20,9 +20,9 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, Response<T>> {
           validationErrors: [],
           status: {
             success: true,
-            statusCode: 200,
+            statusCode: 200
           },
-          data,
+          data
         };
       })
     );

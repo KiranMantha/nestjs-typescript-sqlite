@@ -2,7 +2,7 @@ import {
   CallHandler,
   ExecutionContext,
   HttpException,
-  NestInterceptor,
+  NestInterceptor
 } from '@nestjs/common';
 import { catchError, Observable, throwError } from 'rxjs';
 
@@ -27,8 +27,8 @@ export class ErrorInterceptor implements NestInterceptor<any, ErrorResponse> {
               validationErrors: [JSON.stringify(err)],
               status: {
                 success: false,
-                statusCode: 500,
-              },
+                statusCode: 500
+              }
             },
             500
           );

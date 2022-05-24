@@ -5,8 +5,7 @@ import {
   Entity,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn
+  PrimaryGeneratedColumn
 } from 'typeorm';
 import { Question } from './question';
 import { Questionnaire } from './questionnaire';
@@ -16,13 +15,14 @@ export class Category extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({
-    unique: true
-  })
+  @Column()
   name: string;
 
   @Column()
   sortId: number;
+
+  @Column()
+  questionnaireId: number;
 
   @ManyToOne(() => Questionnaire)
   questionnaire: Questionnaire;
@@ -32,7 +32,4 @@ export class Category extends BaseEntity {
 
   @CreateDateColumn()
   createdDate: string;
-
-  @UpdateDateColumn()
-  lastModifiedDate: string;
 }
